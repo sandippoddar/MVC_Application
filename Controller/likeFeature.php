@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__. '/../Model/LoginSignup.php';
-require './Controller/SessionCheck.php';
+require '../Controller/SessionCheck.php';
 
 $user = $_SESSION['userEmail'];
 $post_id = $_POST['post_id'];

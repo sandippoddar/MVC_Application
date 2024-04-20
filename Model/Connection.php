@@ -1,13 +1,5 @@
 <?php
 
-// if ($_SERVER['SCRIPT_FILENAME'] == '/var/www/MVCTask/MVC_Application/Controller/loadComments.php') {
-//   require_once '../vendor/autoload.php';
-//   require_once '../Creds/DotEnvHandler.php';
-// }
-// else {
-//   require_once './vendor/autoload.php';
-//   require_once './Creds/DotEnvHandler.php';
-// }
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../Creds/DotEnvHandler.php';
 
@@ -19,28 +11,28 @@ class Connection extends DotEnvHandler {
   /**
    * @var string.
    * 
-   *  Use here to store Server name.
+   * Use here to store Server name.
    */
   private $servername;
 
   /**
    * @var string.
    * 
-   *  Store Username to connect with database.
+   * Store Username to connect with database.
    */
   private $username;
 
   /**
    * @var string.
    * 
-   *  Store Password of User.
+   * Store Password of User.
    */
   private $password;
 
   /**
    * @var string.
    * 
-   *  Store Database name.
+   * Store Database name.
    */
   private $dbname;
 
@@ -58,16 +50,16 @@ class Connection extends DotEnvHandler {
    */
   public function __construct() {
     try {
-        $this->dotEnv();
-        $this->servername = $_ENV['severname'];
-        $this->username = $_ENV['userName'];
-        $this->password = $_ENV['password'];
-        $this->dbname = $_ENV['dbName'];
-        $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $this->dotEnv();
+      $this->servername = $_ENV['severname'];
+      $this->username = $_ENV['userName'];
+      $this->password = $_ENV['password'];
+      $this->dbname = $_ENV['dbName'];
+      $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } 
     catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+      echo "Connection failed: " . $e->getMessage();
     }
   }
 

@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Light gray background color */
+}
+
+.container {
+  text-align: center;
+}
+
+.centered-text {
+  background-color: #ffffff; /* White background color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+h1 {
+  color: #333333; /* Dark gray text color */
+}
+
+p {
+  color: #666666; /* Medium gray text color */
+}
+a {
+  display: inline-block; /* Display the anchor tag as a block element */
+  margin-top: 20px; /* Add spacing above the anchor tag */
+  padding: 10px 20px; /* Add padding inside the anchor tag */
+  text-decoration: none; /* Remove underline */
+  color: #ffffff; /* Text color */
+  background-color: #007bff; /* Blue background color */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+a:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

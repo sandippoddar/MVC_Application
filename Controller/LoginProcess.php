@@ -6,6 +6,7 @@ $linked = new Linkedin();
 
 if (isset($_SESSION['flag'])) {
   header('location: /Dashboard');
+  exit();
 }
 if (isset($_POST['login'])) {
   $emailUser = $_POST['emailUser'];
@@ -16,7 +17,7 @@ if (isset($_POST['login'])) {
   if (password_verify($password, $isSignUp) && $isSignUp) {
     $_SESSION['flag'] = 1;
     $_SESSION['userEmail'] = $emailUser;
-    header("location: /Dashboard");
+    header('location: /Dashboard');
     exit();
   }
   else {

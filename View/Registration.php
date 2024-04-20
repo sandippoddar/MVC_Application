@@ -33,9 +33,6 @@ require './Controller/RegistrationController.php';
       <input type="button" value="GET OTP" id ="getotp">
       <input type="submit" value="signup" name="submit">
     </form>
-    <div class="social">
-          <a class="go" href = "#"><i class="fab fa-linkedin"></i>  Linkedin</a>
-        </div>
     <button>
       <a href="/Login">Go to login</a>
     </button>

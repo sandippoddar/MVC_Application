@@ -24,7 +24,7 @@ require './Controller/DashboardProcess.php';
             <!-- this is the wrapper class -->
             <div class="flex-all wrapper-content">
                 <div class="img-container">
-                    <img src="./View/IMAGES/head_logo.jpg" alt="">
+                    <img src="./View/IMAGES/head_logo.jpg">
                 </div>
 
                 <div class="input-box">
@@ -85,7 +85,7 @@ require './Controller/DashboardProcess.php';
 </div>
 
 <script>
-  $(document).ready(function(){
+  $(document).ready(function() {
     let countLoad = 0;
     $(".comments").hide();
 
@@ -137,8 +137,8 @@ require './Controller/DashboardProcess.php';
         var input = parentDiv.find("textarea").val(); // Get the value of textarea
 
         $.ajax({
-          type: 'POST',
-          url: './Controller/Comment.php', 
+          url: './Controller/Comment.php',
+          type: 'POST', 
           data: { post_id: postId, input: input },
           success: function(response) {
             console.log(response);

@@ -25,6 +25,9 @@ switch ($route) {
   case 'ForgetPassword':
     require './View/ForgetPassword.php';
     break;
+  case 'Message':
+    require './View/registerMessage.php';
+    break;
   case 'Dashboard':
     require './View/Dashboard.php';
     break;
@@ -37,12 +40,10 @@ switch ($route) {
   case 'EditProfile':
     require './View/editProfile.php';
     break;
-  case 'Comment':
-    require './View/comment.php';
-    break;
   case '403':
     require './View/page_403.php';
     break;
   default:
-    require './View/page_404.php';
+    require './View/login.view.php';
 }
+?>

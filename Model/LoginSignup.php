@@ -32,6 +32,8 @@ class LoginSignup extends Connection {
    *  Store Email Id of User.
    * 
    * @return string|bool
+   *  This function returns String when Username or Email is in Database and
+   *  returns False when Username or Email is not in the Database.
    */
   public function Duplicate (string $userName, string $email) {
     $sql = $this->conn->prepare("SELECT * FROM User WHERE Email = :email OR UserName = :userName");
@@ -51,6 +53,8 @@ class LoginSignup extends Connection {
    *  Stores Email ID of the User.
    * 
    * @return bool
+   *  This function return TRUE if Email ID is in the Database or return FALSE
+   *  if Email ID is not in the Database.
    */
   public function isEmailInDb (string $userEmail) {
     $sql = $this->conn->prepare("SELECT * FROM User WHERE Email = :userEmail");
@@ -70,6 +74,8 @@ class LoginSignup extends Connection {
    *  Stores the Data as per the User enter Username or Email.
    * 
    * @return int|bool
+   *  This Function return Password of the User which Email or Username is in the
+   *  Database or return False if User's Email or Username is not in Database.
    */
   public function LoginSelect (string $userEmail) {
     $sql = $this->conn->prepare("SELECT * FROM User WHERE Email = :Email OR UserName = :username");
@@ -81,6 +87,15 @@ class LoginSignup extends Connection {
     return FALSE;
   }
 
+  /**
+   * Function to Fetch User profile details from User Table.
+   * 
+   * @param string $userEmail
+   *  Stores the Data as per the User enter Username or Email.
+   * 
+   * @return array
+   *  Array containing user details for the given User Email. 
+   */
   public function fetchUserProfile (string $userEmail) {
     $sql = $this->conn->prepare("SELECT * FROM User WHERE Email = :Email OR UserName = :username");
     $sql->execute(array(':Email' => $userEmail, ':username'=> $userEmail));
@@ -88,11 +103,28 @@ class LoginSignup extends Connection {
     return $result;
   }
 
+  /**
+   * Function to Add new post to Post Table.
+   * 
+   * @param string $user
+   *  Stores Username of the User.
+   * @param string $caption
+   *  Stores Caption of a post.
+   * @param string $image
+   *  Stores image using Blob datatype.
+   * 
+   * @return void
+   */
   public function addPost (string $user, string $caption, string $image) {
     $sql = $this->conn->prepare("INSERT INTO POST (User, Caption, Image) VALUES(:userName, :caption, :image)");
     $sql->execute(array(':userName' => $user, ':caption' => $caption, ':image' => $image));
   }
 
+  /**
+   * Function to fetch all post from Post Table in Descending order.
+   * 
+   * @return array
+   */
   public function fetchUser () {
     $sql = $this->conn->prepare("SELECT * FROM POST ORDER BY TIME DESC LIMIT 2");
     $sql->execute();
@@ -100,6 +132,14 @@ class LoginSignup extends Connection {
     return $result;
   }
 
+  /**
+   * Function to implement Load more feature.
+   * 
+   * @param int $countLoad
+   *  Stores the Offset Value.
+   * 
+   * @return array
+   */
   public function loadProfile (int $countLoad) {
     $sql = $this->conn->prepare("SELECT * FROM POST ORDER BY TIME DESC LIMIT 2 OFFSET $countLoad");
     $sql->execute();
@@ -107,8 +147,10 @@ class LoginSignup extends Connection {
     return $result;
   }
 
+  /**
+   * Function to edit 
+   */
   public function editUser (string $userName, string $image, string $oldName) {
-    
     if ($image === '') {
       $sql = $this->conn->prepare("UPDATE User JOIN POST ON User.UserName = POST.User JOIN LIKES ON User.UserName = LIKES.USER SET User.UserName = :userName, POST.User = :userName, LIKES.USER = :userName WHERE User.UserName = :oldName AND POST.User = :oldName AND LIKES.USER = :oldName");
       $sql->execute(array(':userName' => $userName, ':oldName' => $oldName));
