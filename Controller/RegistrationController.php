@@ -34,20 +34,21 @@ if (isset($_POST["submit"])) {
   }
   if (is_string($isExist)) {
     $errorArr[] = $isExist;
-  } 
+  }
   if (empty($_POST['otpInput'])) {
     $errorArr[] = 'You Need OTP to Register.';
   }
   elseif ($_POST['otpInput'] != $_SESSION['otp'] || $email != $_SESSION['email']) {
     $errorArr[] = 'Enter Correct OTP';
   }
-  $dummyImgPath = './View/IMAGES/profile.webp';
+  
+  $dummyImgPath = './View/IMAGES/dummy_image.jpg';
   $imageData = file_get_contents($dummyImgPath); 
   $encodedImage = base64_encode($imageData);
 
   if (empty($errorArr)) {
     session_destroy();
-    $obSignup->insert($userName, $email, $password,  $imageData);
+    $obSignup->insert($userName, $email, $password, $imageData);
     header("location: /Login");
   }
 }

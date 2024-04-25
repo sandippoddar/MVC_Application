@@ -1,5 +1,5 @@
 <?php
-// require_once '../Controller/OtpProcess.php';
+require './Controller/forgetPasswordController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,19 +10,24 @@
   <link rel="stylesheet" href="./View/CSS/login.css">
 </head>
 <body>
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
+  <div class="container">
+    <form action="ForgetPassword" method="post">
+      <h1>Email For Reset Password</h1>
+
+      <label for="otp">Enter Email</label>
+      <input type="text" placeholder="Email" id="email" name ="email">
+
+      <input type="submit" name="submit" value="Submit">
+
+      <p><a href="/Login">GO TO LOGIN</a></p>
+    </form>
+    <div class="error">
+      <?php if (isset($_POST['submit']) && count($message)) : ?>
+        <?php foreach( $message as $msg) : ?>
+          <h1><?php echo $msg; ?></h1>
+        <?php endforeach; ?>
+      <?php endif; ?>
   </div>
-  <form action="ForgetPassword" method="post">
-    <h3>Email For Reset Password</h3>
-
-    <label for="otp">Enter Email</label>
-    <input type="text" placeholder="Email" id="email" name ="email">
-
-    <input type="submit" name="submit" value="Submit">
-
-    <p><a href="/Login">GO TO LOGIN</a></p>
-  </form>
+  </div>
 </body>
 </html>

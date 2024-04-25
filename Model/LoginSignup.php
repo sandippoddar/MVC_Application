@@ -88,6 +88,69 @@ class LoginSignup extends Connection {
   }
 
   /**
+   * Function to Update Token_hash, Token Expiry time in the Database whenever 
+   * User send a Reset Password link to the Email ID.
+   * 
+   * @param string $email
+   *  Stores Email ID of User.
+   * @param string $token_hash
+   *  Stores new Generated Token hash.
+   * @param string $expiry
+   *  Stores Expiry time of the Generated token.
+   * 
+   * @return bool
+   */
+  public function updateToken (string $email, string $token_hash, string $expiry) {
+    $sql = $this->conn->prepare("UPDATE User SET tokenHash = :tokenHash, expiryToken = :expiry WHERE Email = :email");
+    $sql->execute(array(':tokenHash' => $token_hash, ':expiry' => $expiry, ':email' => $email));
+    if ($sql->rowCount() > 0) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Function to get User ID and Expiry Time of Token Using the TokenHash.
+   * 
+   * @param string $tokenHash
+   *  Stores Token hash value.
+   * 
+   * @return array|bool 
+   */
+  public function checkToken (string $tokenHash) {
+    $sql = $this->conn->prepare("SELECT * FROM User WHERE tokenHash = :tokenHash");
+    $sql->execute(array(':tokenHash' => $tokenHash));
+    $result = $sql->fetch(PDO::FETCH_ASSOC);
+    $tokenArray = [];
+    if ($result != []) {
+      $tokenArray["UserId"] = $result["ID"];
+      $tokenArray["tokenExpire"] = $result["expiryToken"];
+      return $tokenArray;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Function to Update User Password and Set Token value and Expire Time as
+   * Null.
+   * 
+   * @param string $userId
+   *  Stores Id of User.
+   * @param string $password
+   *  Stores Hash value of Password.
+   * 
+   * @return bool
+   */
+  public function updateUser (int $userId, string $password) {
+    $sql = $this->conn->prepare("UPDATE User SET tokenHash = NULL, expiryToken = NULL, Password = :password WHERE ID = :userId");
+    $sql->execute([':password' => $password, ':userId' => $userId]);
+    if ($sql->rowCount() > 0) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
    * Function to Fetch User profile details from User Table.
    * 
    * @param string $userEmail

@@ -10,7 +10,6 @@ if (strpos($urlArr[1],'?')) {
 else {
   $route = $urlArr[1];
 }
-// echo $route;
 
 switch ($route) {
   case '':
@@ -24,6 +23,9 @@ switch ($route) {
     break;
   case 'ForgetPassword':
     require './View/ForgetPassword.php';
+    break;
+  case 'resetpassword':
+    require './View/resetPassword.php';
     break;
   case 'Message':
     require './View/registerMessage.php';
