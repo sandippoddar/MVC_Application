@@ -1,0 +1,208 @@
+/* RESET CSS */
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+ 
+}
+html,body{
+  font-family: Roboto,sans-serif;
+  font-size: 20px;
+}
+p{
+  color: white;
+}
+a,li{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.primary-button{
+  padding: 18px 35px;
+  border-radius: 26px;
+  border: 1px solid whitesmoke;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+.primary-button:hover{
+  background-color: #d0a904;
+  border-color: #d0a904;
+}
+.wrapper-content{
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* header for navigation started */
+/* .header{
+  display: flex;
+  justify-content: center;
+} */
+.flex-all{
+ 
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  flex-wrap: wrap;
+}
+
+.header-ul{
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 28px; */
+  /* justify-content: space-between; */
+  align-items: center;
+  list-style: none;
+  
+}
+.img-container{
+  max-width: 170px;
+}
+.img-container img{
+  width: 100%;
+  height: auto;
+}
+.header-ul li{
+  padding: 15px;
+  /* transition: color 0.3s ease-in-out; */
+}
+.header-ul li:nth-child(-n+6):hover{
+  background-color: black;
+  color: whitesmoke;
+  a{
+    color: #fff;
+  }
+}
+.input-box {
+  position: relative;
+  height: 76px;
+  max-width: 400px;
+  width: 100%;
+  background: #fff;
+  margin: 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.input-box i,
+.input-box .button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.input-box i {
+  left: 20px;
+  font-size: 30px;
+  color: #707070;
+}
+.input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  padding: 0 155px 0 65px;
+  background-color: transparent;
+}
+ .button {
+  right: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  background-color: #4070f4;
+  cursor: pointer;
+}
+.input-box .button:active {
+  transform: translateY(-50%) scale(0.98);
+}
+form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: space-between;
+  border: 2px solid #000;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #bdcebe;
+}
+label{
+  width: 100%;
+}
+textarea {
+  width: 100%;
+}
+p {
+  color: #000;
+}
+.res {
+  
+  padding-top: 50px;
+}
+.profile {
+  width: 75%;
+  margin: 0 auto;
+  border: 2px solid #000;
+  margin-bottom: 40px;
+}
+.profile p {
+  font-size: 25px;
+}
+.profile .image, .profile .image img{
+  width: 100%;
+}
+.social {
+  font-size: 20px;
+}
+/* .profile .image {
+ max-width: 400px;
+} */
+.image {
+  width: 400px;
+ }
+img {
+  width: 100%;
+}
+.social-ele {
+  display: flex;
+  gap: 7px;
+}
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.profileimg {
+  display: flex;
+  align-items: flex-start;
+}
+section {
+  padding-top: 50px;
+}
+.post {
+  padding: 10px 15px;
+  font-size: 20px;
+}
+textarea {
+  padding: 25px;
+  font-size: 20px;
+}
+.like i,.comment i {
+  font-size: 28px;
+}
+.comm1 p {
+  padding: 10px 0;
+}
