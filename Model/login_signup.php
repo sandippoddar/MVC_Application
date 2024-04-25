@@ -80,15 +80,53 @@ class LoginSignup extends Connection {
     }
     return FALSE;
   }
-  public function addPost (string $productName, string $details, string $image) {
-    $sql = $this->conn->prepare("INSERT INTO Product (Product_name, caption, image) VALUES(:productName, :details, :image)");
-    $sql->execute(array(':productName' => $productName, ':details' => $details, ':image' => $image));
+  public function addProduct (string $productName, string $details, string $image, int $price) {
+    $sql = $this->conn->prepare("INSERT INTO Product (Product_name, caption, image, price) VALUES(:productName, :details, :image, :price)");
+    $sql->execute(array(':productName' => $productName, ':details' => $details, ':image' => $image, ':price' => $price));
   }
 
   public function fetchProduct () {
     $sql = $this->conn->prepare("SELECT * FROM Product");
     $sql->execute();
     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
+  public function insertCart (string $email, int $productId) {
+    $sql = $this->conn->prepare("INSERT INTO Cart (User_Email, Product_id) VALUES(:email, :productId)");
+    $sql->execute([':email' => $email, ':productId' => $productId]);
+  }
+
+  public function isCart (string $email, int $productId) {
+    $sql = $this->conn->prepare("SELECT * FROM Cart WHERE USER_Email = :email AND Product_id = :productId");
+    $sql->execute([':email' => $email, ':productId' => $productId]);
+    if ($sql->rowCount() > 0) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  public function fetchCart(string $email) {
+    $sql = $this->conn->prepare("SELECT Product.Product_id,Product.Product_name, Product.caption, Product.price FROM Cart JOIN Product ON Cart.Product_id = Product.Product_id WHERE Cart.User_Email = :email");
+    $sql->execute([':email' => $email]);
+    if ($sql->rowCount() > 0) {
+      $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+  public function removeCart (string $email, int $pid) {
+    $sql = $this->conn->prepare("DELETE FROM Cart WHERE User_Email = '$email' AND Product_id = $pid");
+    $sql->execute();
+  }
+
+  public function totalPrice (string $email) {
+    $sql = $this->conn->prepare("SELECT SUM(Product.price) AS PRICE FROM Cart JOIN Product ON Cart.Product_id = Product.Product_id WHERE Cart.User_Email ='$email'");
+    $sql->execute();
+    $result = $sql->fetch(PDO::FETCH_ASSOC);
     return $result;
   }
 

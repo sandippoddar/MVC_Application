@@ -36,9 +36,9 @@ require './Controller/user_landing_control.php';
                 <!-- nav part start here -->
                 <nav>
                     <ul class="header-ul">
-                      <li><a href="/Dashboard">Home</a></li>
+                      <li><a href="/user">Home</a></li>
                       <!-- <li><a href="/addproduct">Add Product</a></li> -->
-                      <li><a href="#">Your Cart</a></li>
+                      <li><a href="/usercart">Your Cart</a></li>
                       <li><a href="/EditProfile">Edit Profile</a></li>
                       <li><a href="/Profile">Profile</a></li>
                       <li><a href="./Controller/Logout.php">Logout</a></li>
@@ -56,12 +56,14 @@ require './Controller/user_landing_control.php';
               <?php echo '<img src="data:image;base64,' . base64_encode($row['image']) .'" class="im">'; ?>
             </div>
             <p>Product Details: <?php echo $row['caption'] ?></p>
-            <button class="button cart">Add to Cart</button>
+            <p>Product Price: <?php echo $row['price'] ?> /-</p>
+            <button class="button cart" data-product-id = "<?php echo $row['Product_id'] ?>">Add to Cart</button>
           </div>
         <?php endforeach; ?>
         </section>
         </article>
         </main>
     </div>
+    <script src="./View/AJAX/cart.js"></script>
 </body>
 </html>

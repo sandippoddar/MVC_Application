@@ -30,4 +30,7 @@ switch ($route) {
   case 'addproduct':
     require './View/add_product.php';
     break;
+  case 'usercart':
+    require './View/user_cart.php';
+    break;
 }

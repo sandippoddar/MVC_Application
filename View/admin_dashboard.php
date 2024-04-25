@@ -55,6 +55,7 @@ require './Controller/admin_landing_controller.php';
               <?php echo '<img src="data:image;base64,' . base64_encode($row['image']) .'" class="im">'; ?>
             </div>
             <p>Product Details: <?php echo $row['caption'] ?></p>
+            <p>Product Price: <?php echo $row['price'] ?> /-</p>
           </div>
         <?php endforeach; ?>
         </section>

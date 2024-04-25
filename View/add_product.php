@@ -60,6 +60,10 @@ require './Controller/add_post_controller.php';
               <label for="image">Enter Image</label>
               <input type="file" name="image" id="image">
             </div>
+            <div class="form-ele">
+              <label for="price">Enter Price of Product: </label>
+              <input type="text" name="price" id="price">
+            </div>
             <input type="submit" value="Add Product" name="Submit">
           </form>
         </section>
